@@ -1,10 +1,13 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" type="image/png" href="" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/priceless_logo.png' %}" />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     <title>Priceless</title>
     {% block head %} 
     {% endblock %}
@@ -12,16 +15,16 @@
   <body>
     <header>
       <div class="header-logo-container">
-        <a href="/">
-          <img src="" alt="Priceless Logo" />
-        </a>
+        <img src="{% static 'images/priceless_logo.png' %}" alt="Priceless logo" />
+        <h1 class="header-logo-text">Priceless</h1>
       </div>
-      <nav>
-        <ul>
-          <li><a href="/about">About</a></li>
-        </ul>
-      </nav>
     </header>
+
+    <nav class="site-nav">
+      <ul>
+        <li><a href="/about">About</a></li>
+      </ul>
+    </nav>
     <main>
      {% block content %} 
      {% endblock %}
