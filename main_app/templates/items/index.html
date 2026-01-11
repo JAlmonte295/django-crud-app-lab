@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{% static 'css/items/item-index.css' %}"
+  />
+{% endblock %} {% block content %}
+
+<section class="page-header">
+  <h1> Item list</h1>
+  <img
+    src="{% static 'images/treasure-chest.png' %}"
+    alt="Treasure"
+    />
+</section>
+
+<section class="item-container">
+  {% for item in items %}
+  <div class="item-card">
+    <div class="item-image-container">
+      <img
+        src="{% static 'images/treasure-chest.png' %}"
+        alt="Treasure"
+        />
+    </div>
+    <h2 class="card-title">{{ item.name }}</h2>
+    {% if item.price > 0 %}
+    <p> I bought this for {{ item.price }}</p>
+    {% else %}
+    <p> This item was a gift/passed down/free</p>
+    {% endif %}
+    <p><small>{{ item.description }}</small></p>
+  </div>
+  {% endfor %}
+</section>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{% static 'css/home.css' %}"
+/>
+{% endblock %} {% block content %}
+
+<section class="logo-container">
+  <div class="item-image-container">
+    <img
+      src="{% static '' %}"
+      alt="The Splash Container img"
+    />
+  </div>
+  <img
+    src="{% static '' %}"
+    alt="Text reads: Priceless"
+  />
+</section>
+
+{% endblock %}

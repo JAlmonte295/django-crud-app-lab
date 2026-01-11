@@ -1,0 +1,73 @@
+/* Home page styles aligned with about/base design */
+
+/* Use base main layout (max-width/padding) and center content */
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  display: block;
+}
+
+main > section {
+  width: 100%;
+  padding: 12px 8px;
+}
+
+/* show header/logo (base.css centers it) */
+.header-logo-container {
+  display: block;
+}
+
+.logo-container {
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cat-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Login/card layout follows base variables when available */
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+}
+
+.login h1 {
+  font-size: clamp(2.4rem, 4vw, 3.6rem);
+  margin: 10px 0;
+}
+
+.login > p {
+  margin: 14px 0 0;
+}
+
+.login label {
+  margin-bottom: 6px;
+}
+
+.login input {
+  padding: 8px 10px;
+  font-size: 1.6rem;
+}
+
+.login .btn {
+  align-self: flex-end;
+  margin-top: 16px;
+}
+
+@media only screen and (min-width: 768px) {
+  main > section { width: 60%; }
+
+  .login {
+    border: 2px solid var(--muted);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+  }
+}
