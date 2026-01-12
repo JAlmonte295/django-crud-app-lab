@@ -7,12 +7,12 @@
 
 <section class="page-header">
   <h1> Item list</h1>
-  <img
-    src="{% static 'images/treasure-chest.png' %}"
-    alt="Treasure"
-    />
+  {% comment %} <img
+    src="{% static '' %}"
+    alt="header"
+    /> {% endcomment %}
 </section>
-
+<hr />
 <section class="item-container">
   {% for item in items %}
   <div class="item-card">
@@ -24,7 +24,7 @@
     </div>
     <h2 class="card-title">{{ item.name }}</h2>
     {% if item.price > 0 %}
-    <p> I bought this for {{ item.price }}</p>
+    <p> I bought this for ${{ item.price }}</p>
     {% else %}
     <p> This item was a gift/passed down/free</p>
     {% endif %}
