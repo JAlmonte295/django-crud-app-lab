@@ -23,9 +23,9 @@
     <nav class="site-nav">
       <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/items">My Items</a></li>
-        <li><a href="/add_items">Add Items</a></li>
-        <li><a href="/about">About</a></li>
+        <li><a href="{% url 'item-index' %}">My Items</a></li>
+        <li><a href="{% url 'item-create' %}">Add Items</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
       </ul>
     </nav>
     <main>

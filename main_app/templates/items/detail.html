@@ -1,0 +1,25 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/items/item-detail.css' %}" />
+{% endblock %} 
+{% block content %}
+<section class="item-container">
+  <div class="item-img">
+    <img src="{% static '' %}" alt="item img" />
+  </div>
+  <div class="item-details">
+    <h1>{{ item.name }}</h1>
+    {% if item.price > 0 %}
+      <h2>I bought this for ${{ item.price }}!</h2>
+    {% else %}
+      <h2>I got this item for free!</h2>
+    {% endif %}
+    <p>{{ item.description }}</p>
+    <div class="btn-container">
+      <a href="{% url 'item-update' item.id %}" class="btn edit">Edit</a>
+      <a href="{% url 'item-delete' item.id %}" class="btn delete">Delete</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
