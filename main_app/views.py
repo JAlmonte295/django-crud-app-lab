@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Item
+from .models import Item, Market
 from .forms import MarketForm
 
 # Define the home view function
@@ -22,6 +22,14 @@ def item_detail(request, item_id):
     market_form = MarketForm()
     return render(request, 'items/detail.html', {'item': item, 'market_form': market_form})
 
+def add_market(request, item_id):
+    form = MarketForm(request.POST)
+    if form.is_valid():
+        new_market = form.save(commit=False)
+        new_market.item_id = item_id
+        new_market.save()
+    return redirect('item-detail', item_id=item_id)
+
 
 # Create your views here.
 
@@ -37,3 +45,14 @@ class ItemDelete(DeleteView):
     model = Item
     success_url = '/items/'
 
+class MarketUpdate(UpdateView):
+    model = Market
+    fields = ['outlet', 'price']
+
+    def get_success_url(self):
+        return f"/items/{self.object.item.id}/"
+
+class MarketDelete(DeleteView):
+    model = Market
+    def get_success_url(self):
+        return f"/items/{self.object.item.id}/"

@@ -30,3 +30,6 @@ class Market(models.Model):
 
     def __str__(self):
         return f"{self.get_outlet_display()} price: {self.price}"
+    
+    class Meta:
+        ordering = ['-price']
