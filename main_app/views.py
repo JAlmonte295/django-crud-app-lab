@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Item
+from .forms import MarketForm
 
 # Define the home view function
 def home(request):
@@ -18,7 +19,8 @@ def item_index(request):
 
 def item_detail(request, item_id):
     item = Item.objects.get(id=item_id)
-    return render(request, 'items/detail.html', {'item': item})
+    market_form = MarketForm()
+    return render(request, 'items/detail.html', {'item': item, 'market_form': market_form})
 
 
 # Create your views here.
