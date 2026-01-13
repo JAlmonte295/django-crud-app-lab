@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Item, Market
 from .forms import MarketForm
+from django.contrib.auth.views import LoginView
+
 
 # Define the home view function
 def home(request):
@@ -56,3 +58,6 @@ class MarketDelete(DeleteView):
     model = Market
     def get_success_url(self):
         return f"/items/{self.object.item.id}/"
+
+class Home(LoginView):
+    template_name = 'home.html'
