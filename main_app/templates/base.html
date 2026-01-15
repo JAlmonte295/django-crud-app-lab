@@ -22,10 +22,20 @@
 
     <nav class="site-nav">
       <ul>
+        {% if user.is_authenticated%}
         <li><a href="/">Home</a></li>
         <li><a href="{% url 'item-index' %}">My Items</a></li>
         <li><a href="{% url 'item-create' %}">Add Items</a></li>
         <li><a href="{% url 'about' %}">About</a></li>
+        <li><form id="logout-form" method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button type="submit" >Log Out</button>
+        </form></li>
+        {% else %}
+        <li><a href="/">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'signup' %}">Sign Up</a></li>
+        {% endif %}
       </ul>
     </nav>
     <main>

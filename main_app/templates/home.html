@@ -6,6 +6,8 @@
 {% endblock %}
 
 {% block content %}
+{% if not user.is_authenticated %}
+
 <section class="login">
   <h1>Sign In</h1>
   <form method="post" action="{% url 'home' %}">
@@ -14,4 +16,10 @@
     <button type="submit" class="btn btn-primary">Log In</button>
   </form>
 </section>
+
+{% else %}
+<h1> Welcome {{ user.username }}! </h1>
+
+{% endif %}
+
 {% endblock %}

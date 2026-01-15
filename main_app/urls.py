@@ -12,4 +12,5 @@ urlpatterns = [
     path('markets/<int:pk>/update/', views.MarketUpdate.as_view(), name='market-update'),
     path('markets/<int:pk>/delete/', views.MarketDelete.as_view(), name='market-delete'),
     path('', views.Home.as_view(), name='home'),
+    path('accounts/signup/', views.signup, name='signup'),
 ]
