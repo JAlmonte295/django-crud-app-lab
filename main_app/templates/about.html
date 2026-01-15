@@ -1,8 +1,20 @@
 {% extends 'base.html' %} 
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}" />
+{% endblock %}
+
 {% block content %}
+
 <h1>About Priceless</h1>
+
 <hr />
-<p class="page-content">
-  I like to collect priceless items but I have too many!
-</p>
+<div class="page-content">
+  <p>
+    Priceless is your personal inventory tracker for the unique and valuable items in your life. Whether you're a collector of rare artifacts, a thrift store enthusiast, or just someone who loves to keep track of their favorite possessions, Priceless helps you catalog your finds. Record details like purchase price, item type, and descriptions, and even track market values across different outlets. Start building your digital treasury today!
+  </p>
+  
+</div>
+<img src="{% static 'images/header_img.png' %}" alt="header image" />
 {% endblock %}

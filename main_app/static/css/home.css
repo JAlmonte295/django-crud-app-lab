@@ -1,73 +1,54 @@
-/* Home page styles aligned with about/base design */
-
-/* Use base main layout (max-width/padding) and center content */
-main {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 24px 16px;
-  display: block;
+/* Layout */
+.hero{
+  display:flex;
+  gap:2rem;
+  align-items:center;
+  justify-content:space-between;
+  padding:2rem;
 }
 
-main > section {
-  width: 100%;
-  padding: 12px 8px;
-}
-
-/* show header/logo (base.css centers it) */
-.header-logo-container {
-  display: block;
-}
-
-.logo-container {
-  max-width: 520px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.cat-container {
-  width: 100%;
-  margin: 0 auto;
-}
-
-/* Login/card layout follows base variables when available */
-.login {
+/* Left content (message + image) */
+.hero-left{
+  width:60%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
-  width: 100%;
+  align-items: center;
+  gap: 2rem;
+}
+.hero-left .lead{
+  margin:0.5rem 0 1rem 0;
+  color:#555;
+}
+.hero-image{
+  width: 500px;
+  flex-shrink: 0;
+  height:auto;
+  display:block;
+  margin-top:0;
+
 }
 
-.login h1 {
-  font-size: clamp(2.4rem, 4vw, 3.6rem);
-  margin: 10px 0;
+/* Sign-in card on the right */
+.login-card{
+  width:35%;
+  background:#fff;
+  padding:1.25rem;
+  border-radius:8px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.06);
+}
+.login-card h2{
+  margin-top:0;
+}
+.login-card form{ margin-top:0.5rem; }
+
+/* Signed-in variant: center content a bit */
+.hero.signed-in{
+  justify-content:flex-start;
 }
 
-.login > p {
-  margin: 14px 0 0;
-}
-
-.login label {
-  margin-bottom: 6px;
-}
-
-.login input {
-  padding: 8px 10px;
-  font-size: 1.6rem;
-}
-
-.login .btn {
-  align-self: flex-end;
-  margin-top: 16px;
-}
-
-@media only screen and (min-width: 768px) {
-  main > section { width: 60%; }
-
-  .login {
-    border: 2px solid var(--muted);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.06);
-  }
+/* Responsive */
+@media (max-width: 768px){
+  .hero{ flex-direction:column; padding:1rem; }
+  .hero-left, .login-card{ width:100%; }
+  .hero-left { flex-direction: column; text-align: center; }
+  .login-card{ margin-top:1rem; }
 }

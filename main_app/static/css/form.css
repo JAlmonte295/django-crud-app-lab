@@ -4,6 +4,19 @@
   width: 100%;
 }
 
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.page-header img {
+  height: 60px;
+  width: auto;
+}
+
 table {
   padding: 0 40px;
   width: 100%;

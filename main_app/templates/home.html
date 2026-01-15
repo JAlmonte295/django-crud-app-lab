@@ -8,18 +8,37 @@
 {% block content %}
 {% if not user.is_authenticated %}
 
-<section class="login">
-  <h1>Sign In</h1>
-  <form method="post" action="{% url 'home' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Log In</button>
-  </form>
-</section>
+<div class="hero">
+  <div class="hero-left">
+    <div>
+      {% comment %} <img src="{% static 'images/mascot_img.png' %}" alt="Welcome" class="hero-image"> {% endcomment %}
+      <h1>Welcome to Priceless</h1>
+      <p class="lead">Your personal inventory tracker for unique and valuable items. Please sign in or create an account to start cataloging your treasures!</p>
+    </div>
+    
+  </div>
+
+  <aside class="login-card">
+    <h2>Sign In</h2>
+    <form method="post" action="{% url 'home' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Log In</button>
+    </form>
+  </aside>
+</div>
 
 {% else %}
-<h1> Welcome {{ user.username }}! </h1>
+
+<div class="hero signed-in">
+  <div class="hero-left">
+    <div>
+      <h1>Welcome back, {{ user.username }}!</h1>
+      <p class="lead">Glad to see you again. Ready to manage your inventory?</p>
+    </div>
+    <img src="{% static 'images/mascot_img.png' %}" alt="User welcome" class="hero-image">
+  </div>
+</div>
 
 {% endif %}
-
 {% endblock %}
