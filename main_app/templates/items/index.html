@@ -17,10 +17,11 @@
       <a href="{% url 'item-detail' item.id %}">
         <div class="card-content">
           <div class="item-img-container">
-            <img
-              src="{% static 'images/treasure-chest.png' %}"
-              alt="Treasure"
-            />
+            {% if item.image %}
+              <img src="{{ item.image.url }}" alt="{{ item.name }}" />
+            {% else %}
+              <img src="{% static 'images/treasure-chest.png' %}" alt="Treasure" />
+            {% endif %}
           </div>
           <h2 class="card-title">{{ item.name }}</h2>
           {% if item.price > 0 %}
@@ -29,8 +30,20 @@
           <p>I got this item for free!</p>
           {% endif %}
           <p><small>{{ item.description }}</small></p>
+          
+          {% if item.tags.count %}
+            <div class="card-tags">
+              {% for tag in item.tags.all %}
+                <span class="index-tag-badge" style="border-color: {{ tag.color }}; color: {{ tag.color }};">{{ tag.name }}</span>
+              {% endfor %}
+            </div>
+          {% endif %}
         </div>
       </a>
+    </div>
+  {% empty %}
+    <div style="text-align: center; width: 100%; margin-top: 40px;">
+      <h3>No items yet. <a href="{% url 'item-create' %}">Add your first treasure!</a></h3>
     </div>
   {% endfor %}
 </section>

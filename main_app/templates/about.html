@@ -2,19 +2,18 @@
 {% load static %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/about.css' %}" />
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
 {% endblock %}
 
 {% block content %}
 
-<h1>About Priceless</h1>
-
-<hr />
-<div class="page-content">
-  <p>
-    Priceless is your personal inventory tracker for the unique and valuable items in your life. Whether you're a collector of rare artifacts, a thrift store enthusiast, or just someone who loves to keep track of their favorite possessions, Priceless helps you catalog your finds. Record details like purchase price, item type, and descriptions, and even track market values across different outlets. Start building your digital treasury today!
-  </p>
-  
+<div class="hero signed-in">
+  <div class="hero-left">
+    <div>
+      <h1>About Priceless</h1>
+      <p class="lead">Priceless is your personal inventory tracker for the unique and valuable items in your life. Whether you're a collector of rare artifacts, a thrift store enthusiast, or just someone who loves to keep track of their favorite possessions, Priceless helps you catalog your finds. Record details like purchase price, item type, and descriptions, and even track market values across different outlets. Start building your digital treasury today!</p>
+    </div>
+    <img src="{% static 'images/mascot_img.png' %}" alt="Priceless Mascot" class="hero-image">
+  </div>
 </div>
-<img src="{% static 'images/header_img.png' %}" alt="header image" />
 {% endblock %}

@@ -6,7 +6,11 @@
 {% block content %}
 <section class="item-container">
   <div class="item-img">
-    <img src="{% static 'images/priceless_logo.png' %}" alt="item img" />
+    {% if item.image %}
+      <img src="{{ item.image.url }}" alt="{{ item.name }}" />
+    {% else %}
+      <img src="{% static 'images/priceless_logo.png' %}" alt="item img" />
+    {% endif %}
   </div>
   <div class="item-details">
     <h1>{{ item.name }}</h1>
@@ -20,6 +24,32 @@
       <a href="{% url 'item-update' item.id %}" class="btn btn-primary">Edit</a>
       <a href="{% url 'item-delete' item.id %}" class="btn btn-danger">Delete</a>
     </div>
+    <hr>
+    <div class="tags-container">
+      <h3>Tags</h3>
+      <div class="item-actions" style="margin-bottom: 12px;">
+        {% if item.tags.count %}
+          {% for tag in item.tags.all %}
+            <div class="tag-badge" style="border: 2px solid {{ tag.color }}; color: {{ tag.color }};">
+              <span>{{ tag.name }}</span>
+              <form action="{% url 'unassoc-tag' item.id tag.id %}" method="POST" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="tag-remove-btn" title="Remove Tag">×</button>
+              </form>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p>No tags yet.</p>
+        {% endif %}
+      </div>
+      <h4>Available Tags</h4>
+      {% for tag in tags %}
+        <form action="{% url 'assoc-tag' item.id tag.id %}" method="POST" style="display:inline;">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-sm btn-secondary" style="margin-bottom: 5px;">+ {{ tag.name }}</button>
+        </form>
+      {% endfor %}
+    </div>
     <div class="markets-container">
       <h3>Markets</h3>
       <form action="{% url 'add_market' item.id %}" method="POST" class="subsection-content" autocomplete="off">
@@ -28,16 +58,13 @@
         <button type="submit" class="btn btn-success">Add Market</button>
       </form>
       {% for market in item.market_set.all %}
-        <div class="card mb-2">
-          <div class="card-body p-2 d-flex justify-content-between align-items-center">
-            <div>
-              <span class="fw-bold">{{ market.get_outlet_display }}</span>: ${{ market.price }}
-            </div>
-            <div>
+        <div class="market-card">
+          <div class="market-info">
+            <span style="font-weight: bold;">{{ market.get_outlet_display }}</span>: ${{ market.price }}
+          </div>
+          <div class="market-actions">
               <a href="{% url 'market-update' market.id %}" class="btn btn-sm btn-outline-primary">Edit</a>
               <a href="{% url 'market-delete' market.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
-            </div>
-          </div>
         </div>
       {% empty %}
         <p>No markets listed.</p>

@@ -18,6 +18,8 @@ class Item(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField(max_length=250)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    tags = models.ManyToManyField('Tag')
+    image = models.ImageField(upload_to='items/', blank=True)
 
     def __str__(self):
         return self.name
@@ -36,3 +38,13 @@ class Market(models.Model):
     
     class Meta:
         ordering = ['-price']
+
+class Tag(models.Model):
+    name = models.CharField(max_length=50)
+    color = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('tags-detail', kwargs={'pk': self.id})

@@ -24,6 +24,7 @@
 .item-img-container img {
   width: 200px;
   height: 200px;
+  object-fit: cover;
 }
 
 /* card block used in templates (alias `.card`) */
@@ -63,12 +64,29 @@
 .card > a,
 .item-card > a { display: block; color: inherit; text-decoration: none; }
 
+/* Mini Tags for Index Cards */
+.card-tags {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.index-tag-badge {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  border: 1px solid #ccc; /* Fallback */
+  background-color: #fff;
+  font-weight: 600;
+}
+
 @media (max-width: 680px) {
   .item-card, .card { width: 46%; }
 }
 
 @media (max-width: 420px) {
   .item-card, .card { width: 100%; }
-  .item-image-container, .card-img-container { height: 72px; }
-  .item-image-container img, .card-img-container img { height: 70px; max-width: 86%; }
+  .item-img-container, .card-img-container { height: 72px; }
+  .item-img-container img, .card-img-container img { height: 70px; max-width: 86%; }
 }

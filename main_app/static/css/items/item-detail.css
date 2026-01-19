@@ -83,3 +83,93 @@
     max-height: 240px;
   }
 }
+
+/* --- New Styles for Tags, Markets & Buttons --- */
+
+/* Section Dividers */
+.tags-container, .markets-container {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+}
+
+h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Tag Badges */
+.tag-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 50px; /* Pill shape */
+  margin-right: 8px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  background-color: #fff;
+  transition: transform 0.1s ease;
+}
+
+.tag-badge:hover {
+  transform: scale(1.05);
+}
+
+.tag-remove-btn {
+  background: none;
+  border: none;
+  margin-left: 8px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 0.8;
+  padding: 0;
+  color: inherit;
+  opacity: 0.6;
+}
+
+.tag-remove-btn:hover {
+  opacity: 1;
+}
+
+/* Market Cards */
+.market-card {
+  background: #fdfdfd;
+  border: 1px solid #e1e1e1;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.market-info {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.market-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Button Flavors */
+.btn-danger { background-color: #e74c3c; color: #fff; }
+.btn-danger:hover { background-color: #c0392b; }
+
+.btn-success { background-color: #2ecc71; color: #fff; }
+.btn-success:hover { background-color: #27ae60; }
+
+.btn-sm { padding: 4px 10px; font-size: 0.85rem; }
+
+/* Outline Buttons */
+.btn-outline-primary { border: 1px solid #3498db; color: #3498db; background: transparent; }
+.btn-outline-primary:hover { background: #3498db; color: #fff; }
+
+.btn-outline-danger { border: 1px solid #e74c3c; color: #e74c3c; background: transparent; }
+.btn-outline-danger:hover { background: #e74c3c; color: #fff; }

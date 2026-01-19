@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from .models import Item, Market
+from .models import Item, Market, Tag
 from .forms import MarketForm
 
 
@@ -21,13 +22,15 @@ def about(request):
 
 @login_required
 def item_index(request):
-    items = Item.objects.filter(user=request.user)
+    items = Item.objects.filter(user=request.user).prefetch_related('tags')
     return render(request, 'items/index.html', {'items': items})
 
 def item_detail(request, item_id):
     item = Item.objects.get(id=item_id)
+    id_list = item.tags.all().values_list('id')
+    tags_item_doesnt_have = Tag.objects.exclude(id__in=id_list)
     market_form = MarketForm()
-    return render(request, 'items/detail.html', {'item': item, 'market_form': market_form})
+    return render(request, 'items/detail.html', {'item': item, 'market_form': market_form, 'tags': tags_item_doesnt_have})
 
 def add_market(request, item_id):
     form = MarketForm(request.POST)
@@ -67,7 +70,7 @@ def signup(request):
 
 class ItemCreate(LoginRequiredMixin, CreateView):
     model = Item
-    fields = '__all__'
+    fields = ['name', 'item_type', 'price', 'description', 'tags', 'image']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -75,11 +78,12 @@ class ItemCreate(LoginRequiredMixin, CreateView):
 
 class ItemUpdate(LoginRequiredMixin, UpdateView):
     model = Item
-    fields = ['name', 'item_type', 'price', 'description']
+    fields = ['name', 'item_type', 'price', 'description', 'image']
 
 class ItemDelete(LoginRequiredMixin, DeleteView):
     model = Item
     success_url = '/items/'
+    template_name = 'items/confirm_delete.html'
 
 class MarketUpdate(LoginRequiredMixin, UpdateView):
     model = Market
@@ -96,3 +100,35 @@ class MarketDelete(LoginRequiredMixin, DeleteView):
 class Home(LoginView):
     template_name = 'home.html'
 
+class TagList(LoginRequiredMixin, ListView):
+    model = Tag
+    template_name = 'tags/index.html'
+
+class TagDetail(LoginRequiredMixin, DetailView):
+    model = Tag
+    template_name = 'tags/detail.html'
+
+class TagCreate(LoginRequiredMixin, CreateView):
+    model = Tag
+    fields = ['name', 'color']
+    template_name = 'tags/form.html'
+
+class TagUpdate(LoginRequiredMixin, UpdateView):
+    model = Tag
+    fields = ['name', 'color']
+    template_name = 'tags/form.html'
+
+class TagDelete(LoginRequiredMixin, DeleteView):
+    model = Tag
+    success_url = '/tags/'
+    template_name = 'tags/confirm_delete.html'
+
+@login_required
+def assoc_tag(request, item_id, tag_id):
+    Item.objects.get(id=item_id).tags.add(tag_id)
+    return redirect('item-detail', item_id=item_id)
+
+@login_required
+def unassoc_tag(request, item_id, tag_id):
+    Item.objects.get(id=item_id).tags.remove(tag_id)
+    return redirect('item-detail', item_id=item_id)
