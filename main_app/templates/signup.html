@@ -2,21 +2,62 @@
 {% load static %} 
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/form.css' %}" />
+<style>
+  .signup-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    border: 1px solid #eee;
+  }
+  .signup-container h1 { margin-top: 0; margin-bottom: 10px; }
+  .signup-container img { height: 50px; margin-bottom: 20px; }
+  .signup-container form { text-align: left; }
+  .signup-container input { 
+    width: 100%; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 6px; 
+    margin-bottom: 15px; 
+  }
+  .signup-container label { font-weight: bold; font-size: 0.9rem; }
+  .signup-container .helptext { font-size: 0.8rem; color: #666; display: block; margin-bottom: 10px; }
+  .signup-container .errorlist { list-style: none; padding: 0; color: #e74c3c; }
+  .red-text { color: #e74c3c; }
+</style>
 {% endblock %} 
 {% block content %}
-<div class="page-header">
-  <h1>Sign Up</h1>
-  <img src="{% static 'images/header_img.png' %}" alt="header image" />
-</div>
-{% if error_message %}
-  <p class="red-text">{{ error_message }}</p>
-{% endif %}
-<form action="" method="post" class="form-container" autocomplete="off">
-  {% csrf_token %}
-  <table>
-    {{ form.as_table }}
-  </table>
-  <button type="submit" class="btn submit">Submit!</button>
-</form>
+<div class="signup-container">
 
+  <h1>Sign Up</h1>
+
+  <img src="{% static 'images/header_img.png' %}" alt="header image" />
+  {% if error_message %}
+    <p class="red-text">{{ error_message }}</p>
+  {% endif %}
+  <form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.errors %}
+          <ul class="errorlist">
+            {% for error in field.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        {% if field.help_text and field.name != 'password1' %}
+          <span class="helptext">{{ field.help_text }}</span>
+        {% endif %}
+      </p>
+    {% endfor %}
+    <div class="helptext">{{ form.password1.help_text }}</div>
+    <button type="submit" class="btn btn-primary" style="width: 100%;">Sign Up</button>
+  </form>
+</div>
 {% endblock %}

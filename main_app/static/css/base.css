@@ -63,9 +63,10 @@ nav.site-nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: inline-flex;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 24px;
-  align-items: center;
 }
 nav.site-nav a {
   color: var(--text-color);
@@ -126,4 +127,13 @@ main {
 
 .btn-primary:hover {
   background-color: #1a5b9e;
+}
+
+.btn-secondary {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.btn-secondary:hover {
+  background-color: #e0e0e0;
 }

@@ -3,13 +3,14 @@
   display:flex;
   gap:2rem;
   align-items:center;
-  justify-content:space-between;
+  justify-content:center;
   padding:2rem;
 }
 
 /* Left content (message + image) */
 .hero-left{
-  width:60%;
+  width:100%;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,18 +60,38 @@
   filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
 }
 
-/* Sign-in card on the right */
-.login-card{
-  width:35%;
-  background:#fff;
-  padding:1.25rem;
-  border-radius:8px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.06);
+/* Login form inside bubble */
+.login-form {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
-.login-card h2{
-  margin-top:0;
+
+.login-form p {
+  width: 100%;
+  max-width: 350px;
+  text-align: left;
+  margin-bottom: 1rem;
 }
-.login-card form{ margin-top:0.5rem; }
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
 
 /* Signed-in variant: center content a bit */
 .hero.signed-in{
@@ -84,7 +105,6 @@
 /* Responsive */
 @media (max-width: 768px){
   .hero{ flex-direction:column; padding:1rem; }
-  .hero-left, .login-card{ width:100%; }
   .hero-left { flex-direction: column; text-align: center; }
-  .login-card{ margin-top:1rem; }
+  .hero-left > div { padding: 1.5rem; }
 }

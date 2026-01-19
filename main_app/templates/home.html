@@ -13,18 +13,18 @@
     <div>
       <h1>Welcome to Priceless</h1>
       <p class="lead">Your personal inventory tracker for unique and valuable items. Please sign in or create an account to start cataloging your treasures!</p>
+      
+      <form method="post" action="{% url 'home' %}" class="login-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="auth-buttons">
+          <button type="submit" class="btn btn-primary">Log In</button>
+          <a href="{% url 'signup' %}" class="btn btn-secondary">Sign Up</a>
+        </div>
+      </form>
     </div>
     <img src="{% static 'images/mascot_img.png' %}" alt="Welcome" class="hero-image">
   </div>
-
-  <aside class="login-card">
-    <h2>Sign In</h2>
-    <form method="post" action="{% url 'home' %}">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit" class="btn btn-primary">Log In</button>
-    </form>
-  </aside>
 </div>
 
 {% else %}

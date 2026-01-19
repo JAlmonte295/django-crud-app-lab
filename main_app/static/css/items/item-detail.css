@@ -173,3 +173,15 @@ h3 {
 
 .btn-outline-danger { border: 1px solid #e74c3c; color: #e74c3c; background: transparent; }
 .btn-outline-danger:hover { background: #e74c3c; color: #fff; }
+
+@media (max-width: 480px) {
+  .market-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .market-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
